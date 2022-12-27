@@ -160,10 +160,15 @@ public class OperationWithNotebook {
                 }
                 String property = properties.get(criterion - 1);
                 Criterion criterionObject = null;
-                if (quantitativeSelection().contains(property)){
-                    criterionObject = Criterion.startGetting(scanner, property, true);
-                }else {
-                    criterionObject = Criterion.startGetting(scanner, property, false);
+                try {
+                    if (quantitativeSelection().contains(property)){
+                        criterionObject = Criterion.startGetting(scanner, property, true);
+                    }else {
+                        criterionObject = Criterion.startGetting(scanner, property, false);
+                    }
+                }catch (Exception e){
+                    System.out.println("Ошибка при выборе критерия");
+                    continue;
                 }
                 if (criterionObject != null){
                     System.out.println("Критерий добавлен");
